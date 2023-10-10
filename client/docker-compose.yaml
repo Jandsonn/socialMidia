@@ -1,0 +1,62 @@
+version: '3.7'
+
+services:
+  db:
+    image: mysql:5.7
+    container_name: mysql_container
+    environment:
+      MYSQL_ROOT_PASSWORD: MinhaSenha # Defina sua senha de root aqui
+      MYSQL_DATABASE: social    # Defina o nome do seu banco de dados aqui
+      MYSQL_USER: '172.18.0.3'        # Defina o nome de usuário do MySQL aqui
+      MYSQL_PASSWORD: MinhaSenha     # Defina a senha do usuário do MySQL aqui
+    ports:
+      - "3306:3306"  # Mapeamento da porta do host para a porta do contêiner MySQL
+    volumes:
+      - mysql_data:/var/lib/mysql   # Mapeamento de volume para armazenar os dados do MySQL
+
+volumes:
+  mysql_data:
+
+
+
+# version: '3.7'
+
+# services:
+#   db:
+#     image: mysql:5.7
+#     container_name: mysql_container
+#     environment:
+#       MYSQL_ROOT_PASSWORD_FILE: /run/secrets/mysql_root_password
+#       MYSQL_DATABASE: my_database
+#       MYSQL_USER: my_user
+#       MYSQL_PASSWORD_FILE: /run/secrets/mysql_user_password
+#     volumes:
+#       - mysql_data:/var/lib/mysql
+#     secrets:
+#       - mysql_root_password
+#       - mysql_user_password
+
+# secrets:
+#   mysql_root_password:
+#     file: ./secrets/mysql_root_password.txt
+#   mysql_user_password:
+#     file: ./secrets/mysql_user_password.txt
+
+# volumes:
+#   mysql_data:
+
+
+# version: '3.1'
+# services:
+
+#   db:
+#     image: mysql
+#     restart: always
+#     environment:
+#       MYSQL_ROOT_PASSWORD: senha
+
+#   adminer:
+#     image: adminer
+#     restart: always
+#     ports:
+#       - 8080:8080
