@@ -10,27 +10,28 @@ const Register = () => {
     email: "",
     password: "",
     name: "",
-  })
+  });
 
-  const [err, setErr] = useState(false);
+
+  const  [err, setErr ] = useState(false);
 
 
   const handleChange = (e) => {
     setInputs((prev) => ({ ...prev, [e.target.name]: e.target.values }));
   }
 
-  const handleClick = async (e) => {
+  const handleClick = async e => {
     e.preventDefault();
 
     try {
-      await axios.post("http://localhost8800/api/auth/register", inputs)
+      await axios.post("http://localhost:8800/api/auth/register", inputs)
     } catch (err) {
-      setErr(true);
+    setErr(true);
     }
-
   };
 
   console.log(err);
+
 
   return (
     <div className="register">
@@ -49,33 +50,12 @@ const Register = () => {
         </div>
         <div className="right">
           <h1>Register</h1>
-          
+
           <form>
-            
-            <input type="text"
-              placeholder="Username"
-              name="username"
-              onChange={handleChange}
-            />
-
-            <input type="email"
-              placeholder="Email"
-              name="email"
-              onChange={handleChange}
-            />
-
-            <input type="password"
-              placeholder="Password"
-              name="password"
-              onChange={handleChange}
-            />
-
-            <input type="text"
-              placeholder="Name"
-              name="name"
-              onChange={handleChange}
-            />
-
+            <input type="text" placeholder="Username" name="username" onChange={handleChange} />
+            <input type="email" placeholder="Email" name="email" onChange={handleChange} />
+            <input type="password" placeholder="Password" name="password" onChange={handleChange} />
+            <input type="text" placeholder="Name" name="name" onChange={handleChange} />
             {/* {err && err } */}
             <button onClick={handleClick}>Register</button>
           </form>
